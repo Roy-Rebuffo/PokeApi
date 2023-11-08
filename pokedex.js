@@ -1,4 +1,4 @@
-//Funcion que inicia y recoge los 150 primeros pokemon
+//THIS FUNCTION INITIALICES AN API CALLING THE POKEMONS FROM 1 TO 150
 const pokeApi = async () => {
     const pokeList$$ = document.querySelector("#pokedex");
     const baseUrl$$ = "https://pokeapi.co/api/v2/pokemon/";
@@ -11,7 +11,7 @@ const pokeApi = async () => {
       
       console.log(result.name);
   
-      // MAPEAR LOS POKEMONS
+      // MAP POKEMONS
       const pokemon = {
           name: result.name,
           image: result.sprites['front_default'],
@@ -24,8 +24,7 @@ const pokeApi = async () => {
   
     return pokemonList;
   };
-  
-  // Esta va a ser mi función para ordenar mis otras funciones.
+  //THIS IS GOING TO BE MY FUNCTION THAT IS GOING TO ORDER MY CODE
   const startApi = async () => {
     const pokemons = await pokeApi();
     console.log(pokemons);
