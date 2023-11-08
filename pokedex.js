@@ -9,10 +9,14 @@ const pokeApi = async () => {
       const response = await fetch(pokemonUrl);
       const result = await response.json();
       
+      //con un return solo me devuelve bulbasaur
       console.log(result.name);
+      
   
       // MAP POKEMONS
+
       const pokemon = {
+        
           name: result.name,
           image: result.sprites['front_default'],
           type: result.types.map((type) => type.type.name).join(', '),
@@ -21,17 +25,40 @@ const pokeApi = async () => {
   
       pokemonList.push(pokemon);
     }
-  
+    
     return pokemonList;
   };
+
+
   //THIS IS GOING TO BE MY FUNCTION THAT IS GOING TO ORDER MY CODE
-  const startApi = async () => {
-    const pokemons = await pokeApi();
-    console.log(pokemons);
+
+
+  // esta funcion me da error y desconozco el motivo
+  
+  const mappedPokemons = (pokemonCharacters) => {
+    const mappedPokemonData = pokemonCharacters.map((character) => ({
+      name: character.name,
+      image: character.sprites['front_default'],
+      type: character.types.map((type) => type.type.name).join(', '),
+      id: character.id,
+    }));
+    return mappedPokemonData;
   };
   
 
-  const panitPokemons = () => {
+  const startApi = async () => {
+    const pokemons = await pokeApi();
+    console.log(pokemons);
+    //esta funcion para mapear me da error y desconozco el motivo
+    const mappedPokemonsData = mappedPokemons(pokemons);
+    console.log(mappedPokemonsData);
+    //
+    paintPokemons();
+
+  };
+  
+
+  const paintPokemons = () => {
   }
 
   startApi();
