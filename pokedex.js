@@ -3,7 +3,7 @@ const pokeApi = async() => {
     const pokeList$$ = document.querySelector('#pokedex');
     const pokeList = [];
   
-    for(let i =1; i<150; i++){
+    for(let i =1; i<=150; i++){
       const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
       const res = await response.json();
       console.log(res)
