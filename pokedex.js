@@ -1,9 +1,7 @@
-const myMain$$ = document.querySelector('main');
-//console.log(myMain$$);
+const myDiv$$ = document.querySelector('#pokedex');
 
-//THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150
+// //THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150 AND PUSHES THEM TO A LIST
 const pokeApi = async () => {
-  const pokeList$$ = document.querySelector("#pokedex");
   const baseUrl$$ = "https://pokeapi.co/api/v2/pokemon/";
   const pokemonList = [];
 
@@ -17,10 +15,12 @@ const pokeApi = async () => {
 
   return pokemonList;
 };
-// MAPPED POKEMONS
+
+// FUNCTION THAT MAPPED THE POKEMONS
 const mappedPokemons = (result) => {
-  const image = result.sprites && result.sprites.front_default ? result.sprites.front_default : 'no-image';
+  const image = result.sprites?.front_default || 'no-image';
   const types = result.types ? result.types.map((type) => type.type.name).join(', ') : 'no-types';
+
   return {
     name: result.name,
     image: image,
@@ -29,24 +29,39 @@ const mappedPokemons = (result) => {
   };
 };
 
-//THIS IS GOING TO BE MY FUNCTION THAT IS GOING TO RECEIVE MY MAPPED POKEMONS AND WILL PAINT THEM
+// FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
-  //console.log('pintar mis pokemons', mappedPokemons)
-  for(let pokemon of mappedPokemons){
-    let pokemonImage = document.createElement('image')
+  for (let pokemon of mappedPokemons) {
+    let pokemonFigure$$ = document.createElement('figure');
+    
+    // CREATING IMAGE
+    let pokemonImage$$ = document.createElement('img');
+    pokemonImage$$.src = pokemon.image;
+    pokemonImage$$.alt = pokemon.name;
+    
+    // ADDED IMAGE ELEMENT TO FIGURE
+    pokemonFigure$$.appendChild(pokemonImage$$);
+    
+    // ADDED NAME ELEMENT TO FIGURE
+    let pokemonName$$ = document.createElement('figcaption');
+    pokemonName$$.textContent = `${pokemon.name} - ID: ${pokemon.id}`;
+    pokemonFigure$$.appendChild(pokemonName$$);
+    
+    // ADDED TYPE ELEMENT TO FIGURE
+    let pokemonType$$ = document.createElement('p');
+    pokemonType$$.textContent = `Type: ${pokemon.type}`;
+    pokemonFigure$$.appendChild(pokemonType$$);
+    
+    // ADDED MY FIGURE ELEMENT TO CONTAINER
+    myDiv$$.appendChild(pokemonFigure$$);
   }
-  
 };
 
-//THIS IS GOING TO BE MY FUNCTION THAT IS GOING TO ORDER MY CODE
+// MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
   const pokemons = await pokeApi();
-  //console.log(pokemons);
-
-  const mappedPokemonsData = pokemons.map(mappedPokemons);
-  //console.log(mappedPokemonsData);
-
-  paintPokemons(mappedPokemonsData);
+  paintPokemons(pokemons);
 };
 
 startApi();
+
