@@ -1,4 +1,4 @@
-//THIS FUNCTION INITIALICES AN API CALLING THE POKEMONS FROM 1 TO 150
+//THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150
 const pokeApi = async () => {
   const pokeList$$ = document.querySelector("#pokedex");
   const baseUrl$$ = "https://pokeapi.co/api/v2/pokemon/";
