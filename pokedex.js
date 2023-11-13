@@ -26,7 +26,6 @@ const mappedPokemons = (result) => {
     id: result.id,
   };
 };
-
 // FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
   for (let pokemon of mappedPokemons) {

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Pokedex</title>
     <link rel="stylesheet" href="styles.css" />
-    <link href="img/pokemonCard.png" rel="stylesheet" />
 </head>
 
 <body>
@@ -15,6 +14,26 @@
        <img class="pokemonTop" src="img/pokemonImg.png" alt="">
         <label for="filterInput">Filtrar por nombre, tipo o ID:</label>
         <input type="text" id="filterInput" name="name" placeholder="Busca tu pokemon">
+        <ul class="nav-bar">
+            <li class="nav-item"><button class="btn-header" value="ver-todos">Ver todos</button></li>
+            <li class="nav-item"><button class="btn-header normal" value="normal">Normal</button></li>
+            <li class="nav-item"><button class="btn-header fire" value="fire">Fire</button></li>
+            <li class="nav-item"><button class="btn-header water" value="water">Water</button></li>
+            <li class="nav-item"><button class="btn-header grass" value="grass">Grass</button></li>
+            <li class="nav-item"><button class="btn-header electric" value="electric">Electric</button></li>
+            <li class="nav-item"><button class="btn-header ice" value="ice">Ice</button></li>
+            <li class="nav-item"><button class="btn-header fighting" value="fighting">Fighting</button></li>
+            <li class="nav-item"><button class="btn-header poison" value="poison">Poison</button></li>
+            <li class="nav-item"><button class="btn-header ground" value="ground">Ground</button></li>
+            <li class="nav-item"><button class="btn-header flying" value="flying">Flying</button></li>
+            <li class="nav-item"><button class="btn-header psychic" value="psychic">Psychic</button></li>
+            <li class="nav-item"><button class="btn-header bug" value="bug">Bug</button></li>
+            <li class="nav-item"><button class="btn-header rock" value="rock">Rock</button></li>
+            <li class="nav-item"><button class="btn-header ghost" value="ghost">Ghost</button></li>
+            <li class="nav-item"><button class="btn-header dragon" value="dragon">Dragon</button></li>
+            <li class="nav-item"><button class="btn-header steel" value="steel">Steel</button></li>
+            <li class="nav-item"><button class="btn-header fairy" value="fairy">Fairy</button></li>
+        </ul>
         <h1>Pokedex</h1>
         <ol id="pokedex"></ol>
         <img class="pokemonDown" src="img/pokemonImg.png" alt="">
