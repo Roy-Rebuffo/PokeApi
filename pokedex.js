@@ -26,37 +26,43 @@ const mappedPokemons = (result) => {
     id: result.id,
   };
 };
+
 // FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
   for (let pokemon of mappedPokemons) {
-    let pokemonFigure$$ = document.createElement('figure');
-    
+    let pokemonCard$$ = document.createElement('div');
+    pokemonCard$$.classList.add('card');
+    let backgroundImg$$ = document.createElement('div');
+    backgroundImg$$.classList.add('background');
+    pokemonCard$$.appendChild(backgroundImg$$);
     // CREATING IMAGE
     let pokemonImage$$ = document.createElement('img');
     pokemonImage$$.src = pokemon.image;
     pokemonImage$$.alt = pokemon.name;
-    
-    // ADDED IMAGE ELEMENT TO FIGURE
-    pokemonFigure$$.appendChild(pokemonImage$$);
-    
-    // ADDED NAME ELEMENT TO FIGURE
-    let pokemonName$$ = document.createElement('figcaption');
+
+    // ADDED IMAGE ELEMENT TO CARD
+    backgroundImg$$.appendChild(pokemonImage$$);
+
+    // ADDED NAME ELEMENT TO CARD
+    let pokemonName$$ = document.createElement('p');
+    pokemonName$$.classList.add('card-title');
     pokemonName$$.textContent = `${pokemon.name} - ID: ${pokemon.id}`;
-    pokemonFigure$$.appendChild(pokemonName$$);
-    
-    // ADDED TYPE ELEMENT TO FIGURE
+    backgroundImg$$.appendChild(pokemonName$$);
+
+    // ADDED TYPE ELEMENT TO CARD
     let pokemonType$$ = document.createElement('p');
     pokemonType$$.textContent = `Type: ${pokemon.type}`;
-    pokemonFigure$$.appendChild(pokemonType$$);
-    
-    // ADDED MY FIGURE ELEMENT TO CONTAINER
-    myDiv$$.appendChild(pokemonFigure$$);
+    backgroundImg$$.appendChild(pokemonType$$);
+
+    // ADDED MY CARD ELEMENT TO CONTAINER
+    myDiv$$.appendChild(pokemonCard$$);
   }
 };
+
 //FUNCTION THAT FINDS THE POKEMONS
 const drawInput = (pokemon) =>{
   //console.log("funcion input",pokemon);
-  const input$$ = document.querySelector('input');
+  const input$$ = document.querySelector('#filterInput');
   //console.log(input$$);
   input$$.addEventListener('input', () => searchPokemon(input$$.value,pokemon))
 };
@@ -86,4 +92,3 @@ const startApi = async () => {
 };
 
 startApi();
-
