@@ -1,0 +1,59 @@
+/*async function fetchPokemons() {
+    // Recuperar la lista con el ID "pokedex" y almacenarla en una variable
+    const pokedexList = document.getElementById("pokedex");
+    const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
+  
+    // Array para almacenar la información de los Pokémon
+    const pokemon = [];
+  
+    // Iterar desde el primer Pokémon (1) hasta el número deseado (150)
+    for (let i = 1; i <= 150; i++) {
+      // Construir la URL completa para el Pokémon actual
+      const pokemonUrl = baseUrl + i;
+  
+      try {
+        // Realizar una solicitud fetch para obtener los datos del Pokémon
+        const response = await fetch(pokemonUrl);
+  
+        if (response.ok) {
+          const pokemonData = await response.json();
+  
+          // Mapear la información del Pokémon y agregarla al array
+          const mappedPokemon = {
+            name: pokemonData.name,
+            image: pokemonData.sprites.front_default,
+            type: pokemonData.types.map((type) => type.type.name).join(', '),
+            id: pokemonData.id,
+          };
+  
+          pokemon.push(mappedPokemon);
+        }
+      } catch (error) {
+        console.error(`Error al recuperar el Pokémon ${i}: ${error}`);
+      }
+    }
+  
+    // Llama a la función para mostrar la lista de Pokémon
+    displayPokemon(pokemon);
+  }
+  
+  function displayPokemon(pokemon) {
+    const pokedexList = document.getElementById("pokedex");
+  
+    // Iterar sobre la lista de Pokémon y crear elementos para mostrar la información
+    pokemon.forEach((p) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <strong>Name:</strong> ${p.name}<br>
+        <strong>ID:</strong> ${p.id}<br>
+        <strong>Type:</strong> ${p.type}<br>
+        <img src="${p.image}" alt="${p.name}"><br><br>
+      `;
+      pokedexList.appendChild(listItem);
+    });
+  }
+  
+  // Llama a la función fetchPokemons al arrancar la aplicación
+  fetchPokemons();
+*/
+

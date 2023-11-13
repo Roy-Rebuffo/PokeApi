@@ -1,5 +1,4 @@
 const myDiv$$ = document.querySelector('#pokedex');
-
 // //THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150 AND PUSHES THEM TO A LIST
 const pokeApi = async () => {
   const baseUrl$$ = "https://pokeapi.co/api/v2/pokemon/";
@@ -15,7 +14,6 @@ const pokeApi = async () => {
 
   return pokemonList;
 };
-
 // FUNCTION THAT MAPPED THE POKEMONS
 const mappedPokemons = (result) => {
   const image = result.sprites?.front_default || 'no-image';
@@ -28,7 +26,6 @@ const mappedPokemons = (result) => {
     id: result.id,
   };
 };
-
 // FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
   for (let pokemon of mappedPokemons) {
@@ -56,11 +53,33 @@ const paintPokemons = (mappedPokemons) => {
     myDiv$$.appendChild(pokemonFigure$$);
   }
 };
+//FUNCTION THAT FINDS THE POKEMONS
+const drawInput = (pokemon) =>{
+  //console.log("funcion input",pokemon);
+  const input$$ = document.querySelector('input');
+  //console.log(input$$);
+  input$$.addEventListener('input', () => searchPokemon(input$$.value,pokemon))
+};
+//FUNCTION THAT FILTERS MY POKEMONS
+const searchPokemon = (filtroDelInput, pokemon) => {
+  let filteredPokemons = pokemon.filter((result) => result.name.toLowerCase().includes(filtroDelInput.toLowerCase()));
+  filteredPokemons = pokemon.filter((result) => result.type.toLowerCase().includes(filtroDelInput.toLowerCase()));
+  //console.log(filteredPokemons)
+  clearResults();
+  paintPokemons(filteredPokemons);
+};
+
+//FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
+const clearResults = () => {
+  myDiv$$.innerHTML = '';
+};
+
 
 // MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
   const pokemons = await pokeApi();
   paintPokemons(pokemons);
+  drawInput(pokemons);
 };
 
 startApi();
