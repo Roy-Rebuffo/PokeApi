@@ -99,8 +99,6 @@ const addEventToButtons = (pokemons) => {
 };
 
 
-
-
 // MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
   const pokemons = await pokeApi();
