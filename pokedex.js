@@ -83,11 +83,30 @@ const clearResults = () => {
   myDiv$$.innerHTML = '';
 };
 
+
+
+
+//FUNCION QUE LLAMA A LOS POKEMON DEPENDIENDO DEL TIPO UNA VEZ SE LE DE AL BOTON
+const addEventToButtons = (pokemons) => {
+  const buttons = document.querySelectorAll('.btn-header');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const type = button.value;
+      searchPokemon(type, pokemons);
+    });
+  });
+};
+
+
+
+
 // MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
   const pokemons = await pokeApi();
   paintPokemons(pokemons);
   drawInput(pokemons);
+  addEventToButtons(pokemons);
 };
 
 startApi();
