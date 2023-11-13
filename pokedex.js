@@ -62,18 +62,21 @@ const drawInput = (pokemon) =>{
 };
 //FUNCTION THAT FILTERS MY POKEMONS
 const searchPokemon = (filtroDelInput, pokemon) => {
-  let filteredPokemons = pokemon.filter((result) => result.name.toLowerCase().includes(filtroDelInput.toLowerCase()));
-  filteredPokemons = pokemon.filter((result) => result.type.toLowerCase().includes(filtroDelInput.toLowerCase()));
+  let filteredPokemonsName = pokemon.filter((result) => result.name.toLowerCase().includes(filtroDelInput.toLowerCase()));
+  let filteredPokemonsType = pokemon.filter((result) => result.type.toLowerCase().includes(filtroDelInput.toLowerCase()));
+  //HE CONVERTIDO EL ID A STRING PORQUE SI NO ME DABA QUE NO ERA UNA FUNCION
+  let filteredPokemonsId = pokemon.filter((result) => result.id.toString().toLowerCase().includes(filtroDelInput.toLowerCase()));
   //console.log(filteredPokemons)
   clearResults();
-  paintPokemons(filteredPokemons);
+  paintPokemons(filteredPokemonsName);
+  paintPokemons(filteredPokemonsType);
+  paintPokemons(filteredPokemonsId);
 };
 
 //FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
 const clearResults = () => {
   myDiv$$.innerHTML = '';
 };
-
 
 // MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
