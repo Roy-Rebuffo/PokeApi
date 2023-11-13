@@ -1,5 +1,5 @@
 const myDiv$$ = document.querySelector('#pokedex');
-// //THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150 AND PUSHES THEM TO A LIST
+//(2)THIS FUNCTION INITIALIZES AN API CALLING THE POKEMONS FROM 1 TO 150 AND PUSHES THEM TO A LIST
 const pokeApi = async () => {
   const baseUrl$$ = "https://pokeapi.co/api/v2/pokemon/";
   const pokemonList = [];
@@ -13,7 +13,7 @@ const pokeApi = async () => {
   }
   return pokemonList;
 };
-// FUNCTION THAT MAPPED THE POKEMONS
+//(3)FUNCTION THAT MAPPED THE POKEMONS
 const mappedPokemons = (result) => {
   const image = result.sprites?.front_default || 'no-image';
   const types = result.types ? result.types.map((type) => type.type.name).join(', ') : 'no-types';
@@ -25,7 +25,7 @@ const mappedPokemons = (result) => {
     id: result.id,
   };
 };
-// FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
+//()FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
   for (let pokemon of mappedPokemons) {
     let pokemonCard$$ = document.createElement('div');
@@ -56,14 +56,14 @@ const paintPokemons = (mappedPokemons) => {
     myDiv$$.appendChild(pokemonCard$$);
   }
 };
-//FUNCTION THAT FINDS THE POKEMONS
+//()FUNCTION THAT FINDS THE POKEMONS
 const drawInput = (pokemon) =>{
   //console.log("funcion input",pokemon);
   const input$$ = document.querySelector('#filterInput');
   //console.log(input$$);
   input$$.addEventListener('input', () => searchPokemon(input$$.value,pokemon))
 };
-//FUNCTION THAT FILTERS MY POKEMONS
+//()FUNCTION THAT FILTERS MY POKEMONS
 const searchPokemon = (filtroDelInput, pokemon) => {
   let filteredPokemonsName = pokemon.filter((result) => result.name.toLowerCase().includes(filtroDelInput.toLowerCase()));
   let filteredPokemonsType = pokemon.filter((result) => result.type.toLowerCase().includes(filtroDelInput.toLowerCase()));
@@ -75,7 +75,7 @@ const searchPokemon = (filtroDelInput, pokemon) => {
   paintPokemons(filteredPokemonsType);
   paintPokemons(filteredPokemonsId);
 };
-//FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
+//()FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
 const clearResults = () => {
   myDiv$$.innerHTML = '';
 };
@@ -83,7 +83,7 @@ const clearResults = () => {
 
 
 
-//FUNCION QUE LLAMA A LOS POKEMON DEPENDIENDO DEL TIPO UNA VEZ SE LE DE AL BOTON
+//()FUNCION QUE LLAMA A LOS POKEMON DEPENDIENDO DEL TIPO UNA VEZ SE LE DE AL BOTON
 const addEventToButtons = (pokemons) => {
   const buttons = document.querySelectorAll('.btn-header');
 
@@ -94,7 +94,7 @@ const addEventToButtons = (pokemons) => {
     });
   });
 };
-//FUNCION QUE LLAMA A TODOS LOS POKEMON CUANDO HAGO CLICK
+//()FUNCION QUE LLAMA A TODOS LOS POKEMON CUANDO HAGO CLICK
 const showAll = (pokemons) =>{
   const showAll$$ = document.querySelector('.btn-show-all');
   showAll$$.addEventListener('click', () => {
@@ -106,9 +106,10 @@ const showAll = (pokemons) =>{
 
 
 
-// MAIN FUNCTION THAT INITIALIZES THE CODE
+//(1)MAIN FUNCTION THAT INITIALIZES THE CODE
 const startApi = async () => {
   const pokemons = await pokeApi();
+  mappedPokemons(pokemons);
   paintPokemons(pokemons);
   drawInput(pokemons);
   addEventToButtons(pokemons);
