@@ -15,7 +15,8 @@ const pokeApi = async () => {
 };
 //(3)FUNCTION THAT MAPPED THE POKEMONS
 const mappedPokemons = (result) => {
-  const image = result.sprites?.front_default || 'no-image';
+  //añado ternarios porque es la unica forma que consegui para que no me salieran errores con image y types y me devuelve true o false
+  const image = result.sprites ?.front_default || 'no-image';
   const types = result.types ? result.types.map((type) => type.type.name).join(', ') : 'no-types';
 
   return {
@@ -25,26 +26,29 @@ const mappedPokemons = (result) => {
     id: result.id,
   };
 };
-//()FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
+//(4)FUNCTION THAT PAINTS THE POKEMONS AND INFO IN THE CONTAINER
 const paintPokemons = (mappedPokemons) => {
   for (let pokemon of mappedPokemons) {
+    //creo mi primera pildora
     let pokemonCard$$ = document.createElement('div');
     pokemonCard$$.classList.add('card');
     let backgroundImg$$ = document.createElement('div');
+    //creo mi segunda pildora y se la añado a la main pildora
     backgroundImg$$.classList.add('background');
     pokemonCard$$.appendChild(backgroundImg$$);
     // CREATING IMAGE
+    //creo otra pildora y se la añado a mi pildora backgroundImg$$
     let pokemonImage$$ = document.createElement('img');
     pokemonImage$$.src = pokemon.image;
     pokemonImage$$.alt = pokemon.name;
 
-    // ADDED IMAGE ELEMENT TO CARD
+    // ADDED IMAGE ELEMENT TO CARD. se la añado a mi pildora backgroundImg$$
     backgroundImg$$.appendChild(pokemonImage$$);
 
     // ADDED NAME ELEMENT TO CARD
     let pokemonName$$ = document.createElement('p');
     pokemonName$$.classList.add('card-title');
-    pokemonName$$.textContent = `${pokemon.name} - ID: ${pokemon.id}`;
+    pokemonName$$.textContent = pokemon.name , pokemon.id;
     backgroundImg$$.appendChild(pokemonName$$);
 
     // ADDED TYPE ELEMENT TO CARD
