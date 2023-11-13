@@ -47,30 +47,33 @@ const paintPokemons = (mappedPokemons) => {
 
     //ADDED NAME ELEMENT TO CARD
     //creo otra pildora
-    //añado otro ternario anidandolos dentro de un template string y asi tambien poder escribir el id dentro de el
+    //añado otro ternario anidandolos dentro de un template string y asi tambien poder escribir el texto "id" dentro de el
     let pokemonName$$ = document.createElement('p');
     pokemonName$$.classList.add('card-title');
     pokemonName$$.textContent = `${pokemon.name} - ID: ${pokemon.id}`;
     backgroundImg$$.appendChild(pokemonName$$);
 
     //ADDED TYPE ELEMENT TO CARD
-    //creo otra pildora 
+    //creo otra pildora
+    //la anido en un template string para poder escribir el texto "Type" + ternario para poder usar el template
     let pokemonType$$ = document.createElement('p');
     pokemonType$$.textContent = `Type: ${pokemon.type}`;
     backgroundImg$$.appendChild(pokemonType$$);
 
-    //ADDED MY CARD ELEMENT TO CONTAINER
+    //ADDED MY POKEMONCARD$$ ELEMENT TO MY MAIN DIV
     myDiv$$.appendChild(pokemonCard$$);
   }
 };
-//()FUNCTION THAT FINDS THE POKEMONS
+//(5)FUNCTION THAT FINDS THE POKEMONS
 const drawInput = (pokemon) =>{
   //console.log("funcion input",pokemon);
   const input$$ = document.querySelector('#filterInput');
   //console.log(input$$);
   input$$.addEventListener('input', () => searchPokemon(input$$.value,pokemon))
 };
-//()FUNCTION THAT FILTERS MY POKEMONS
+//(6)FUNCTION THAT FILTERS MY POKEMONS
+//con esta funcion lo que hago es filtrar mis pokemon en el buscador cada vez que tecleo. luego cree una funcion para 
+//que me vaya borrando el hmtl segun mi necesidad
 const searchPokemon = (filtroDelInput, pokemon) => {
   let filteredPokemonsName = pokemon.filter((result) => result.name.toLowerCase().includes(filtroDelInput.toLowerCase()));
   let filteredPokemonsType = pokemon.filter((result) => result.type.toLowerCase().includes(filtroDelInput.toLowerCase()));
@@ -82,7 +85,8 @@ const searchPokemon = (filtroDelInput, pokemon) => {
   paintPokemons(filteredPokemonsType);
   paintPokemons(filteredPokemonsId);
 };
-//()FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
+//(7)FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
+//funcion que borra el html segun mi necesidad
 const clearResults = () => {
   myDiv$$.innerHTML = '';
 };
@@ -90,7 +94,8 @@ const clearResults = () => {
 
 
 
-//()FUNCION QUE LLAMA A LOS POKEMON DEPENDIENDO DEL TIPO UNA VEZ SE LE DE AL BOTON
+//(8)FUNCION QUE LLAMA A LOS POKEMON DEPENDIENDO DEL TIPO UNA VEZ SE LE DE AL BOTON
+//funcion que llama a los tipo de pokemon cada vez que hacemos click en un tipo de pokemon
 const addEventToButtons = (pokemons) => {
   const buttons = document.querySelectorAll('.btn-header');
 
@@ -101,7 +106,8 @@ const addEventToButtons = (pokemons) => {
     });
   });
 };
-//()FUNCION QUE LLAMA A TODOS LOS POKEMON CUANDO HAGO CLICK
+//(9)FUNCION QUE LLAMA A TODOS LOS POKEMON CUANDO HAGO CLICK
+//funcion que llama a todos los pokemon cuando hago click en el boton de "Ver todos"
 const showAll = (pokemons) =>{
   const showAll$$ = document.querySelector('.btn-show-all');
   showAll$$.addEventListener('click', () => {
