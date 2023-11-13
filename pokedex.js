@@ -11,7 +11,6 @@ const pokeApi = async () => {
 
     pokemonList.push(mappedPokemons(result));
   }
-
   return pokemonList;
 };
 // FUNCTION THAT MAPPED THE POKEMONS
@@ -57,7 +56,6 @@ const paintPokemons = (mappedPokemons) => {
     myDiv$$.appendChild(pokemonCard$$);
   }
 };
-
 //FUNCTION THAT FINDS THE POKEMONS
 const drawInput = (pokemon) =>{
   //console.log("funcion input",pokemon);
@@ -77,7 +75,6 @@ const searchPokemon = (filtroDelInput, pokemon) => {
   paintPokemons(filteredPokemonsType);
   paintPokemons(filteredPokemonsId);
 };
-
 //FUNCTION THAT CLEANS MY HTML EVERY TIME I DO A SEARCH IN THE INPUT
 const clearResults = () => {
   myDiv$$.innerHTML = '';
@@ -97,6 +94,16 @@ const addEventToButtons = (pokemons) => {
     });
   });
 };
+//FUNCION QUE LLAMA A TODOS LOS POKEMON CUANDO HAGO CLICK
+const showAll = (pokemons) =>{
+  const showAll$$ = document.querySelector('.btn-show-all');
+  showAll$$.addEventListener('click', () => {
+    clearResults();
+    paintPokemons(pokemons);
+  });
+};
+
+
 
 
 // MAIN FUNCTION THAT INITIALIZES THE CODE
@@ -105,6 +112,7 @@ const startApi = async () => {
   paintPokemons(pokemons);
   drawInput(pokemons);
   addEventToButtons(pokemons);
+  showAll(pokemons);
 };
 
 startApi();
