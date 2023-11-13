@@ -36,27 +36,30 @@ const paintPokemons = (mappedPokemons) => {
     //creo mi segunda pildora y se la añado a la main pildora
     backgroundImg$$.classList.add('background');
     pokemonCard$$.appendChild(backgroundImg$$);
-    // CREATING IMAGE
+    //CREATING IMAGE
     //creo otra pildora y se la añado a mi pildora backgroundImg$$
     let pokemonImage$$ = document.createElement('img');
     pokemonImage$$.src = pokemon.image;
     pokemonImage$$.alt = pokemon.name;
 
-    // ADDED IMAGE ELEMENT TO CARD. se la añado a mi pildora backgroundImg$$
+    //ADDED IMAGE ELEMENT TO CARD. se la añado a mi pildora backgroundImg$$
     backgroundImg$$.appendChild(pokemonImage$$);
 
-    // ADDED NAME ELEMENT TO CARD
+    //ADDED NAME ELEMENT TO CARD
+    //creo otra pildora
+    //añado otro ternario anidandolos dentro de un template string y asi tambien poder escribir el id dentro de el
     let pokemonName$$ = document.createElement('p');
     pokemonName$$.classList.add('card-title');
-    pokemonName$$.textContent = pokemon.name , pokemon.id;
+    pokemonName$$.textContent = `${pokemon.name} - ID: ${pokemon.id}`;
     backgroundImg$$.appendChild(pokemonName$$);
 
-    // ADDED TYPE ELEMENT TO CARD
+    //ADDED TYPE ELEMENT TO CARD
+    //creo otra pildora 
     let pokemonType$$ = document.createElement('p');
     pokemonType$$.textContent = `Type: ${pokemon.type}`;
     backgroundImg$$.appendChild(pokemonType$$);
 
-    // ADDED MY CARD ELEMENT TO CONTAINER
+    //ADDED MY CARD ELEMENT TO CONTAINER
     myDiv$$.appendChild(pokemonCard$$);
   }
 };
